@@ -1,0 +1,8 @@
+{
+  "n": 1509,
+  "file": "/data/yue/Luis_data/ChemQA/eval/results_dataset_final/qwen2_5_14b/ft_chemqa.jsonl",
+  "CIDEr": 0.31432345504993275,
+  "BLEU-1": 0.39555647304724456,
+  "BLEU-4": 0.12470210604655615,
+  "ROUGE-L": 0.2863386757828791
+}

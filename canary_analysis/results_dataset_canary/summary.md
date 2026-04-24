@@ -1,0 +1,12 @@
+# dataset_final Evaluation Results
+
+Flattened from `dataset_final.jsonl` (compound-level QA pairs); reference = `phase2_answer`.
+
+| model | variant | n | CIDEr | BLEU-1 | BLEU-4 | ROUGE-L |
+|---|---|---|---|---|---|---|
+| gemma3_12b | base | 1509 | 0.0078 | 0.1743 | 0.0195 | 0.1404 |
+| gemma3_12b | finetuned | 1509 | 0.3017 | 0.3930 | 0.1218 | 0.2855 |
+| llama3_1_8b | base | 1509 | 0.0072 | 0.1739 | 0.0244 | 0.1464 |
+| llama3_1_8b | finetuned | 1509 | 0.2753 | 0.3806 | 0.1133 | 0.2771 |
+| qwen2_5_14b | base | 1509 | 0.0021 | 0.1690 | 0.0220 | 0.1555 |
+| qwen2_5_14b | finetuned | 1509 | 0.3143 | 0.3956 | 0.1247 | 0.2863 |
