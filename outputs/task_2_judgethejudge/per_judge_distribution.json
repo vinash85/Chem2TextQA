@@ -1,0 +1,30 @@
+{
+  "gemma": {
+    "agree": 500,
+    "disagree": 469,
+    "unclear": 31,
+    "error_or_missing": 0,
+    "total": 1000
+  },
+  "sonnet": {
+    "agree": 499,
+    "disagree": 466,
+    "unclear": 12,
+    "error_or_missing": 23,
+    "total": 1000
+  },
+  "gpt5": {
+    "agree": 509,
+    "disagree": 453,
+    "unclear": 38,
+    "error_or_missing": 0,
+    "total": 1000
+  },
+  "gemini": {
+    "agree": 495,
+    "disagree": 487,
+    "unclear": 18,
+    "error_or_missing": 0,
+    "total": 1000
+  }
+}

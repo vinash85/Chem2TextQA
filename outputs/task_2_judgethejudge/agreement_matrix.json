@@ -1,0 +1,29 @@
+{
+  "pairwise_cohens_kappa": {
+    "gemma__sonnet": {
+      "kappa": 0.8818880979389856,
+      "n": 977
+    },
+    "gemma__gpt5": {
+      "kappa": 0.881548889285815,
+      "n": 1000
+    },
+    "gemma__gemini": {
+      "kappa": 0.8930356668748651,
+      "n": 1000
+    },
+    "sonnet__gpt5": {
+      "kappa": 0.8297261563733248,
+      "n": 977
+    },
+    "sonnet__gemini": {
+      "kappa": 0.8549047291606482,
+      "n": 977
+    },
+    "gpt5__gemini": {
+      "kappa": 0.8690080683436165,
+      "n": 1000
+    }
+  },
+  "krippendorff_alpha_nominal": 0.8680924909577465
+}
