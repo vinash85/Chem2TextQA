@@ -1,0 +1,8 @@
+{
+  "n": 1509,
+  "file": "/data/yue/Luis_data/ChemQA/eval/results_dataset_final/llama3_1_8b/ft_chemqa.jsonl",
+  "CIDEr": 0.275332119430238,
+  "BLEU-1": 0.3806338204175452,
+  "BLEU-4": 0.1132892398893474,
+  "ROUGE-L": 0.27707005740155305
+}
