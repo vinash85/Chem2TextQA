@@ -432,9 +432,13 @@ def iterate_source(path: Path):
 
 
 def main():
+    repo_root = Path(__file__).resolve().parents[1]
+    default_input = repo_root / "data" / "dataset_gold.jsonl"
+    default_out_dir = repo_root / "tasks" / "task1" / "outputs"
+
     p = argparse.ArgumentParser()
-    p.add_argument("--input", default="/mnt/data_lab/ChemQA/data/dataset_gold.jsonl")
-    p.add_argument("--out_dir", default="/mnt/data_lab/ChemQA/tasks/task1/outputs")
+    p.add_argument("--input", default=str(default_input))
+    p.add_argument("--out_dir", default=str(default_out_dir))
     p.add_argument("--limit", type=int, default=0, help="0 = no limit")
     args = p.parse_args()
 
