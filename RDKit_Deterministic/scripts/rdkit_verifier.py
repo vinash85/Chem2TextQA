@@ -242,13 +242,18 @@ def mol_facts(smiles: str) -> dict[str, Any] | None:
 
 
 def _in_hedged_context(answer: str, start: int, window: int = 40) -> bool:
-    """True if the text just before `start` (within `window` chars) contains a
-    hedge term like 'fewer than', 'about', or a numeric range like '2-3'."""
+    """True if the text around `start` indicates a hedged or range-based claim.
+
+    Hedge terms such as 'fewer than' or 'about' usually appear before the
+    number, while numeric ranges like '2-3 hydrogen bond donors' begin at the
+    number itself.
+    """
     ctx = answer[max(0, start - window) : start]
     if HEDGE_REGEX.search(ctx):
         return True
-    # A range like "2-3 hydrogen bond donors" — check the immediate tail of ctx.
-    if RANGE_REGEX.search(ctx[-20:]):
+    # A range like "2-3 hydrogen bond donors" or "2 to 3 hydrogen bond donors"
+    # starts at the number itself, so inspect a small forward slice from start.
+    if RANGE_REGEX.match(answer[start : start + 20]):
         return True
     return False
 
