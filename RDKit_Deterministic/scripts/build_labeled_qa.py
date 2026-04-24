@@ -7,12 +7,14 @@ For every QA in dataset_gold.jsonl we attach:
       - contradicted   : >=1 claim contradicted (regardless of whether others verified)
       - not_applicable : no RDKit-checkable claim extracted
 """
+import argparse
 import json
 from pathlib import Path
 
-GOLD = Path("/mnt/data_lab/ChemQA/data/dataset_gold.jsonl")
-VERIF = Path("/mnt/data_lab/ChemQA/tasks/task1/outputs/rdkit_verification.jsonl")
-OUT = Path("/mnt/data_lab/ChemQA/tasks/task1/outputs/qa_rdkit_labeled.jsonl")
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+_DEFAULT_GOLD = _REPO_ROOT / "data" / "dataset_gold.jsonl"
+_DEFAULT_VERIF = _REPO_ROOT / "tasks" / "task1" / "outputs" / "rdkit_verification.jsonl"
+_DEFAULT_OUT = _REPO_ROOT / "tasks" / "task1" / "outputs" / "qa_rdkit_labeled.jsonl"
 
 
 def aggregate_label(checks):
@@ -24,9 +26,34 @@ def aggregate_label(checks):
 
 
 def main():
+    p = argparse.ArgumentParser(
+        description="Emit a per-Q&A JSONL with an RDKit-based label attached."
+    )
+    p.add_argument(
+        "--gold",
+        default=str(_DEFAULT_GOLD),
+        help="Path to dataset_gold.jsonl (default: repo-relative data/dataset_gold.jsonl)",
+    )
+    p.add_argument(
+        "--verif",
+        default=str(_DEFAULT_VERIF),
+        help="Path to rdkit_verification.jsonl produced by rdkit_verifier.py",
+    )
+    p.add_argument(
+        "--out",
+        default=str(_DEFAULT_OUT),
+        help="Output path for qa_rdkit_labeled.jsonl",
+    )
+    args = p.parse_args()
+
+    gold_path = Path(args.gold)
+    verif_path = Path(args.verif)
+    out_path = Path(args.out)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
     # Index verifier output by (cid, qa_index).
     verif_index = {}
-    for line in VERIF.open():
+    for line in verif_path.open():
         v = json.loads(line)
         if v.get("smiles_parse_failed"):
             continue
@@ -35,8 +62,8 @@ def main():
 
     n_total = 0
     counts = {"verified": 0, "contradicted": 0, "not_applicable": 0}
-    with OUT.open("w") as fout:
-        for line in GOLD.open():
+    with out_path.open("w") as fout:
+        for line in gold_path.open():
             row = json.loads(line)
             cid = row["cid"]
             split = row.get("split")
@@ -68,7 +95,7 @@ def main():
                 }
                 fout.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
-    print(f"Wrote {n_total:,} labeled Q&A records to {OUT}")
+    print(f"Wrote {n_total:,} labeled Q&A records to {out_path}")
     for k, v in counts.items():
         print(f"  {k}: {v:,} ({v/n_total:.1%})")
 
