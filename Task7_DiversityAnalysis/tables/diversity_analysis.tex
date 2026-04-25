@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Lexical and semantic diversity comparison between Chem2TextQA and SMolInstruct.
+Sampled TTR computed on 50k-token windows (mean $\pm$ std over 10 bootstrap samples).
+Cosine similarity from \texttt{all-MiniLM-L6-v2} embeddings (30k sample, 500k random pairs).
+SMolInstruct uses 14 fixed question templates; Chem2TextQA questions span 2,169 unique
+fine-grained topics.}
+\label{tab:chem_diversity}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+\textbf{Corpus} & \textbf{N} & \textbf{Vocab} & \textbf{Trigrams}
+  & \textbf{TTR (50k)} & \textbf{Mean Cos} & \textbf{Mean Len} \\
+\midrule
+Chem2TextQA Questions (188k) & 188,541 & 46,992 & 412,393 & 0.097$\pm$0.001 & 0.000 & 13.3 \\
+SMolInstruct Questions (all) & 199,990 & 79 & 275 & 0.002$\pm$0.000 & 0.000 & 9.0 \\
+Chem2TextQA Answers (188k) & 188,541 & 328,159 & 5,991,158 & 0.198$\pm$0.002 & 0.000 & 76.2 \\
+SMolInstruct Answers (all) & 199,990 & 32 & 225 & 0.001$\pm$0.000 & 0.000 & 5.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
