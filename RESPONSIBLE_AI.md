@@ -99,16 +99,29 @@ model as clinically validated.**
   (`scripts/audit_redaction.py`).
 - Coverage-analysis script quantifies therapeutic-area and
   molecular-property skew (`scripts/analyze_coverage.py`).
+- **Phase 4 grounding audit** measures the rate at which Phase-2
+  answers contain claims not traceable to the cited evidence
+  (`phase4_grounding/RESULTS.md`). Headline: **55.20% UNSUPPORTED** in
+  the keep-structural view (95% CI 53.4–57.0%) on a 300-Q&A sample;
+  cross-validated by an independent judge to within +3.7pp. This
+  empirically substantiates Misuse Risk #2 (fabricated mechanisms) and
+  is the basis for narrowing the paper's grounding claim. Engineering /
+  design / metabolism Q&As carry the highest training-recall risk.
+- **Dual-use refusal protocol** — the Phase 4 audit revealed that
+  `claude-sonnet-4.6` refuses to judge ~3% of dual-use chemistry Q&As
+  (toxin engineering, pesticide modifications, controlled-substance
+  analog reasoning). Falling back to `gemini-2.5-pro` recovers all of
+  them. Audits run on a single model will systematically miss this
+  topic; reproducers should use a heterogeneous-judge protocol.
 
 ### Deferred to Round 2
 
 - Human-evaluated accuracy on a safety-critical-claim sub-sample
   (scheduled).
-- Phase 4 grounding check that verifies each functional claim is
-  traceable to an evidence sentence (proposed; requires additional LLM
-  compute).
 - RAI review of the engineering-question category for synthesis-uplift
-  risk (proposed).
+  risk (proposed). The Phase 4 audit measured engineering Q&As at 74.6%
+  UNSUPPORTED, the worst of any topic — a strong prior for prioritizing
+  this review.
 - Dataset card fields per the Croissant RAI schema (skeleton provided in
   `croissant.json`; full population after full-run execution).
 

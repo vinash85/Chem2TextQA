@@ -77,6 +77,11 @@ finetune/eval/results_full/*/ft_chemqa.jsonl
 finetune/eval/results_full/*/*.log
 finetune/eval/results_full/*/*.jsonl
 
+# Phase 4 grounding-audit outputs (sample, judged claims, summaries,
+# logs). Reproducible from the orchestrator + a fresh OpenRouter run;
+# never pushed.
+phase4_grounding/outputs/
+
 # OS
 .DS_Store
 Thumbs.db

@@ -73,7 +73,12 @@ No pre-defined split. Recommended:
 - Held-out human-annotated: scheduled for Round 2.
 
 **Are there any errors, sources of noise, redundancies?**
-Yes, many — see `LIMITATIONS.md` in full.
+Yes, many — see `LIMITATIONS.md` in full. The Phase 4 grounding audit
+(`phase4_grounding/RESULTS.md`) measures **55.20% of claims as
+UNSUPPORTED** by the cited evidence (95% CI 53.4–57.0%, n=3,076 claims
+across 300 Q&As, keep-structural view) — i.e. the gold subset contains
+substantial training-recall content. Engineering, ADME, and metabolism
+topics carry the worst grounding.
 
 **Does the dataset rely on external resources?**
 Pipeline inputs are PubMed baseline XML, PMC open-access full text, and

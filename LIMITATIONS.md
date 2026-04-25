@@ -35,15 +35,42 @@ including the three models in this pipeline. Consequences:
 See `CONTAMINATION.md` for the proposed canary-based validation
 methodology.
 
-## 3. The "soft rule" permits training-recall
+## 3. The "soft rule" permits training-recall — measured
 
 Phase 1 and Phase 2 system prompts explicitly allow functional claims
 "supported by the evidence ... used silently as background knowledge".
 This phrasing admits recall from pretraining. There is no mechanism at
 generation time to distinguish a claim supported by a specific evidence
-sentence from one the model would have made anyway. A Phase 4 grounding
-check (LLM-based claim-to-evidence alignment scoring) is scheduled for
-Round 2 but is not yet implemented.
+sentence from one the model would have made anyway.
+
+A Phase 4 grounding audit decomposes Phase-2 answers claim-by-claim and
+labels each claim as STATED, IMPLIED, STRUCTURAL (derivable from SMILES
+alone), or UNSUPPORTED (training-recall candidate). Headline result on
+a 300-Q&A stratified sample (3,076 claims):
+
+| View | UNSUPPORTED | 95% Wilson CI |
+|---|---|---|
+| keep-structural (clean training-recall proxy) | **55.20%** | 53.43–56.97% |
+| drop-structural (PLAN-spec view) | **44.70%** | 43.11–46.30% |
+
+Both views are well above the 20% threshold that would have permitted a
+narrow grounding claim. **The paper's grounding language is therefore
+narrowed, and training-recall risk is flagged in `RESPONSIBLE_AI.md`.**
+
+Engineering / design / metabolism topics carry the worst grounding (75 /
+67 / 69% UNSUPPORTED). Q&As *with* evidence attached are *more*
+UNSUPPORTED than those without, consistent with the model elaborating
+beyond what the evidence sentence states.
+
+Cross-check validation: an independent judge (`google/gemini-2.5-pro`)
+re-judged 30 of the 300 Q&As; macro UNSUPPORTED rates differ by only
++3.68pp from the primary judge, with 26/30 per-row rates agreeing to
+within 20pp. The headline is robust to judge choice.
+
+Full results, per-topic / per-split breakdowns, methodology, and a note
+on dual-use refusals during judging are in
+`phase4_grounding/RESULTS.md`. Code and orchestrator are in
+`phase4_grounding/`.
 
 ## 4. Compound coverage is biased toward well-studied drugs
 
