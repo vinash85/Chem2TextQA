@@ -21,7 +21,12 @@ class ClaimParser:
     """Strict JSON + schema validator for the judge's response."""
 
     @staticmethod
-    def parse(raw: str, attached_ids: set[int]) -> ParseResult:
+    def parse(raw: str | None, attached_ids: set[int]) -> ParseResult:
+        if not isinstance(raw, str):
+            return ParseResult(
+                ok=False,
+                error=f"raw response is not a string (got {type(raw).__name__})",
+            )
         try:
             payload = json.loads(_strip_fences(raw))
         except json.JSONDecodeError as exc:

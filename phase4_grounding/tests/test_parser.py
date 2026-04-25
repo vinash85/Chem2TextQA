@@ -137,6 +137,15 @@ def test_accepts_null_rationale():
     assert result.claims[1].rationale is None
 
 
+def test_handles_none_raw_response():
+    # OpenRouter occasionally returns choices[0].message.content = null
+    # (refusal, truncation, empty tool-call). Must surface as a clean parse
+    # error so the judge's retry/error path takes over instead of crashing.
+    result = ClaimParser.parse(None, attached_ids={1})
+    assert not result.ok
+    assert "not a string" in (result.error or "")
+
+
 def test_strips_markdown_json_fence():
     payload = (
         '```json\n'
