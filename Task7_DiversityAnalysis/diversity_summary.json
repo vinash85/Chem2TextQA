@@ -1,0 +1,245 @@
+{
+  "question_stems": {
+    "n_unique": 34721,
+    "n_questions": 188541,
+    "stem_ratio": 0.184156231270652,
+    "top_20": [
+      [
+        "What is the degree of",
+        3211
+      ],
+      [
+        "What is the primary molecular",
+        2878
+      ],
+      [
+        "How does the compound affect",
+        2763
+      ],
+      [
+        "How does the compound interact",
+        2550
+      ],
+      [
+        "How does the presence of",
+        2293
+      ],
+      [
+        "What is the molecular formula",
+        2036
+      ],
+      [
+        "What is the significance of",
+        1993
+      ],
+      [
+        "How does the compound influence",
+        1935
+      ],
+      [
+        "Identify the key functional groups",
+        1755
+      ],
+      [
+        "What role does the compound",
+        1539
+      ],
+      [
+        "Describe the core scaffold and",
+        1518
+      ],
+      [
+        "What is the effect of",
+        1486
+      ],
+      [
+        "How does the compound's structure",
+        1465
+      ],
+      [
+        "Which part of the molecule",
+        1355
+      ],
+      [
+        "What would be the effect",
+        1345
+      ],
+      [
+        "What effect does the compound",
+        1135
+      ],
+      [
+        "How many chiral centers are",
+        1045
+      ],
+      [
+        "What is the role of",
+        1024
+      ],
+      [
+        "Does the compound possess any",
+        967
+      ],
+      [
+        "Describe the core ring system",
+        922
+      ]
+    ]
+  },
+  "topic_distribution": {
+    "n_unique_topics": 2169,
+    "top_20": [
+      [
+        "engineering",
+        21904
+      ],
+      [
+        "mechanism",
+        17669
+      ],
+      [
+        "physicochemical",
+        16684
+      ],
+      [
+        "therapeutic_use",
+        14691
+      ],
+      [
+        "metabolism",
+        12236
+      ],
+      [
+        "reactivity",
+        11153
+      ],
+      [
+        "toxicity",
+        11114
+      ],
+      [
+        "functional_groups",
+        9527
+      ],
+      [
+        "composition",
+        9174
+      ],
+      [
+        "adme",
+        8850
+      ],
+      [
+        "pharmacophore",
+        8285
+      ],
+      [
+        "scaffold",
+        7061
+      ],
+      [
+        "electronics",
+        6985
+      ],
+      [
+        "stereochemistry",
+        5267
+      ],
+      [
+        "design_levers",
+        4860
+      ],
+      [
+        "drug_interactions",
+        3944
+      ],
+      [
+        "shape_sterics",
+        3865
+      ],
+      [
+        "druglikeness",
+        2338
+      ],
+      [
+        "resistance_mechanism",
+        652
+      ],
+      [
+        "biosynthesis",
+        427
+      ]
+    ],
+    "macro_categories": {
+      "Physico-Chemical\nProperties": 58563,
+      "ADME &\nPharmacology": 53895,
+      "Drug Design &\nEngineering": 42462,
+      "Mechanism &\nReactivity": 11153,
+      "Toxicity &\nSafety": 11114,
+      "Other": 11354
+    }
+  },
+  "structural_stats": {
+    "n_compounds": 15509,
+    "n_unique_smiles": 15503,
+    "n_unique_formulas": 11484,
+    "mw_mean": 419.59566297914614,
+    "mw_median": 317.0567189,
+    "mw_min": 1.0078250319,
+    "mw_max": 14958.8,
+    "stereo_fraction": 0.446257012057515,
+    "smiles_len_mean": 66.92642981494616,
+    "smiles_len_median": 48.0,
+    "ring_count_mean": 2.498807144238829
+  },
+  "stats": {
+    "Chem2TextQA Questions": {
+      "n_texts": 188541,
+      "n_tokens": 2512228,
+      "vocab_size": 46992,
+      "corpus_ttr": 0.018705308594602083,
+      "sampled_ttr": 0.097142,
+      "sampled_ttr_std": 0.001107301223696606,
+      "unique_trigrams": 412393,
+      "mean_length": 13.324571313401329,
+      "median_length": 13.0,
+      "std_length": 3.5824333205328487
+    },
+    "SMolInstruct Questions": {
+      "n_texts": 199990,
+      "n_tokens": 1799910,
+      "vocab_size": 79,
+      "corpus_ttr": 4.3891083443061045e-05,
+      "sampled_ttr": 0.0015800000000000002,
+      "sampled_ttr_std": 2.168404344971009e-19,
+      "unique_trigrams": 275,
+      "mean_length": 9.0,
+      "median_length": 8.5,
+      "std_length": 1.6903085094570331
+    },
+    "Chem2TextQA Answers (phase2)": {
+      "n_texts": 188541,
+      "n_tokens": 14368764,
+      "vocab_size": 328159,
+      "corpus_ttr": 0.022838359652924915,
+      "sampled_ttr": 0.197848,
+      "sampled_ttr_std": 0.002142058822721732,
+      "unique_trigrams": 5991158,
+      "mean_length": 76.2102884783681,
+      "median_length": 75.0,
+      "std_length": 22.432304403786972
+    },
+    "SMolInstruct Answers (all tasks)": {
+      "n_texts": 199990,
+      "n_tokens": 999950,
+      "vocab_size": 32,
+      "corpus_ttr": 3.2001600080004e-05,
+      "sampled_ttr": 0.00064,
+      "sampled_ttr_std": 0.0,
+      "unique_trigrams": 225,
+      "mean_length": 5.0,
+      "median_length": 5.0,
+      "std_length": 0.0
+    }
+  }
+}
