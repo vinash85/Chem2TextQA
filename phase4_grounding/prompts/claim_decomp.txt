@@ -1,0 +1,42 @@
+You are auditing a chemistry Q&A dataset. Your job is to decompose an answer into atomic claims and label each claim against the cited evidence.
+
+# Compound
+- name: {{COMPOUND_NAME}}
+- SMILES: {{SMILES}}
+- molecular formula: {{MOLECULAR_FORMULA}}
+
+# Question
+{{QUESTION}}
+
+# Answer to audit
+{{PHASE2_ANSWER}}
+
+# Evidence
+{{EVIDENCE_BLOCK}}
+
+# Task
+Decompose the answer into atomic claims. For each claim, assign exactly one label:
+
+- STATED: the claim is directly written in some evidence sentence. Set `evidence_id` to the [E#] integer that supports it.
+- IMPLIED: the claim is inferable from evidence by one routine domain-reasoning step. Set `evidence_id` to the [E#] integer used and describe the step in `rationale`.
+- STRUCTURAL: the claim is derivable from the SMILES, molecular formula, or molecular weight alone, without any evidence sentence. Set `evidence_id` to null.
+- UNSUPPORTED: none of the above. Set `evidence_id` to null. This flags a training-recall candidate.
+
+Atomicity rules:
+- One assertion per claim. Split conjunctions ("X and Y") into two claims.
+- Numerical values, named entities (gene / protein / enzyme names), and mechanisms are each atomic units.
+- Preserve hedging in place ("may", "is thought to", "approximately") inside the claim — do not decompose hedges into separate claims.
+
+Constraints:
+- `rationale` must be at most 25 words.
+- `evidence_id` must be one of the [E#] integers shown above, or null.
+- Return STRICT JSON only — no commentary, no markdown fences, no trailing text.
+
+Output schema:
+
+{"claims":[
+  {"claim":"<atomic statement>",
+   "label":"STATED|IMPLIED|UNSUPPORTED|STRUCTURAL",
+   "evidence_id":<int or null>,
+   "rationale":"<<=25 words>"}
+]}
