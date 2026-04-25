@@ -51,13 +51,14 @@
   "rai:dataImputationProtocol": "Missing molecular_formula / molecular_weight from CID-Mass.gz are left null; compounds with zero matching evidence sentences after redaction are dropped (30.2% of premium-tier compounds).",
   "rai:dataPreprocessingProtocol": "Compound-name redaction to [COMPOUND] using longest-match-first synonym regex. Sentence-level dedup by redacted text. Random sampling (per-CID-seeded) to cap at 500 sentences per compound.",
   "rai:dataManipulationProtocol": "Four-phase LLM pipeline: Phase 1 generation, Phase 2 blind re-answer, Phase 3 agreement judge. All prompts versioned in the source tree at chem2textqa/qa_pipeline/phase_*/ .",
-  "rai:dataSocialImpact": "Drug-related training data with public-health implications. A model fine-tuned on this data could produce plausible-but-incorrect clinical claims. See RESPONSIBLE_AI.md for intended use, misuse risks, and mitigations.",
+  "rai:dataSocialImpact": "Drug-related training data with public-health implications. A Phase 4 grounding audit on a 300-Q&A stratified sample measured 55.20% of claims as UNSUPPORTED by the cited evidence (95% Wilson CI 53.4–57.0%, n=3076 claims; cross-validated by an independent judge to within +3.7pp). A model fine-tuned on this data could produce plausible-but-incorrect clinical claims, and the published gold subset contains substantial training-recall content. See RESPONSIBLE_AI.md and phase4_grounding/RESULTS.md for intended use, misuse risks, mitigations, and the full audit.",
   "rai:dataBiases": [
     "Therapeutic-area bias: oncology / CV / CNS over-represented",
     "Approval-status bias: FDA-approved drugs vs research chemicals",
     "Publication bias: English-language biomedical literature",
     "Model-consensus bias: 'gold' labels reflect what two LLMs agree on, not ground truth",
-    "Training-data overlap: evidence sentences are likely in LLM pretraining corpora"
+    "Training-data overlap: evidence sentences are likely in LLM pretraining corpora",
+    "Training-recall content (measured): 55.20% of Phase-2 answer claims are not traceable to the cited evidence (Phase 4 audit, n=3076 claims). Engineering / ADME / metabolism Q&As are worst-grounded (>67% UNSUPPORTED); mechanism / therapeutic-use / toxicity are better-grounded (<41%). See phase4_grounding/RESULTS.md."
   ],
   "rai:dataUseCases": [
     "Intended: instruction tuning for medicinal-chemistry LLM research.",
